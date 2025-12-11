@@ -1,11 +1,3 @@
-# constraints.py
-# Constraint checking utilities for KenKen puzzle
-# Functions:
-# - valid_in_row_col: uniqueness in row/col
-# - cage_valid_partial: prune partial assignments per cage
-# - cage_satisfied: check fully-filled cage
-# - check_all_constraints_for_cell: wrapper used by solvers
-
 from typing import List, Tuple, Dict, Any
 from math import prod
 
@@ -25,11 +17,7 @@ def valid_in_row_col(grid: List[List[int]], r: int, c: int, value: int) -> bool:
     return True
 
 def cage_valid_partial(values: List[int], target: int, op: str, N:int) -> bool:
-    """
-    Given a list of values for cells in the cage (zeros allowed for empty),
-    decide if the partial assignment can still lead to a valid solution.
-    Conservative pruning only: we avoid false negatives.
-    """
+  # values may contain zeros for unfilled cells
     filled = [v for v in values if v != 0]
     if not filled:
         return True
@@ -102,12 +90,7 @@ def cage_satisfied(values: List[int], target: int, op: str) -> bool:
     return False
 
 def check_all_constraints_for_cell(grid: List[List[int]], cages: List[Cage], r: int, c: int, value: int) -> bool:
-    """
-    Check if putting 'value' at (r,c) is consistent with:
-    - row uniqueness
-    - column uniqueness
-    - cage partial validity
-    """
+   
     n = len(grid)
     # row and col
     for j in range(n):

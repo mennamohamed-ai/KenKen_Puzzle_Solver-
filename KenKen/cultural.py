@@ -1,8 +1,3 @@
-# cultural.py
-# Simple Cultural-style evolutionary solver for KenKen.
-# Produces approximate solutions; returns a best-found valid solution if discovered.
-# Exports: CulturalAlgorithm class with .solve()
-
 import random
 import time
 import copy
@@ -33,11 +28,7 @@ class CulturalAlgorithm:
         return grid
 
     def fitness(self, grid: List[List[int]]) -> int:
-        """
-        Lower is better. Count:
-          - column uniqueness violations (duplicates)
-          - cage violations (full cage not satisfied)
-        """
+        # count violations: column duplicates + cage violations
         violations = 0
         # column duplicates
         for c in range(self.n):
@@ -133,10 +124,6 @@ class CulturalAlgorithm:
         return grid
 
     def solve(self, timeout_seconds: float = 5.0):
-        """
-        Run the cultural algorithm. Returns:
-        (solved_bool, solution_grid_as_KenKenGrid_or_None, elapsed_time, iterations)
-        """
         start = time.time()
         # init population
         self.population = [self.random_individual() for _ in range(self.pop_size)]

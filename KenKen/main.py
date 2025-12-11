@@ -1,6 +1,3 @@
-# main.py
-# Entry point to launch the KenKen Tkinter GUI
-
 from tkinter import Tk
 from gui import KenKenGUI
 

@@ -1,7 +1,3 @@
-# backtracking.py
-# Backtracking KenKen solver with basic heuristics (no heavy MRV but can be extended)
-# Exports: solve_backtracking(grid_obj) -> (solved_bool, time_taken_seconds, iterations)
-
 import time
 from typing import Tuple, List
 from grid import KenKenGrid
@@ -16,11 +12,7 @@ def find_empty_cell(grid_mat):
     return None
 
 def solve_backtracking(grid_obj: KenKenGrid, max_solutions: int = 1) -> Tuple[bool, float, int]:
-    """
-    Attempt to solve KenKen using backtracking.
-    Returns (solved_bool, time_seconds, iterations_count).
-    Grid_object is modified in-place on success.
-    """
+
     start = time.time()
     grid = grid_obj.grid
     cages = grid_obj.get_cages()
@@ -28,8 +20,6 @@ def solve_backtracking(grid_obj: KenKenGrid, max_solutions: int = 1) -> Tuple[bo
     iterations = 0
     solved_flag = False
     solutions_found = 0
-
-    # Optional improvement: we can precompute cage map for fast lookup
     cell_to_cage = {}
     for cage in cages:
         for cell in cage['cells']:

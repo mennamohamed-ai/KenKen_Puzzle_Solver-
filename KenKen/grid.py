@@ -1,8 +1,3 @@
-# grid.py
-# KenKen grid and cage representation
-# Author: Generated for project (Helwan University AI310/CS361)
-# Contains KenKenGrid class used by solvers and GUI.
-
 from typing import List, Tuple, Optional, Dict, Any
 import copy
 
@@ -10,11 +5,6 @@ Cell = Tuple[int, int]
 Cage = Dict[str, Any]  # {'cells': [(r,c)...], 'op': '+', 'target': 6}
 
 class KenKenGrid:
-    """
-    Represent an N x N KenKen puzzle:
-    - grid: NxN integers (0 means empty)
-    - cages: list of cage dictionaries: {'cells': [...], 'op': '+', 'target': int}
-    """
 
     def __init__(self, n: int):
         if n <= 0:
