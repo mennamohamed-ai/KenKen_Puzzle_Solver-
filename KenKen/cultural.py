@@ -68,29 +68,8 @@ class CulturalAlgorithm:
                 else:
                     self.belief[r][c] = [x/s for x in self.belief[r][c]]
 
-    def sample_from_belief_rowwise(self):
-        # sample each cell according to belief, then repair each row into permutation
-        grid = [[None]*self.n for _ in range(self.n)]
-        for r in range(self.n):
-            row_vals = []
-            for c in range(self.n):
-                probs = self.belief[r][c]
-                val = random.choices(range(1, self.n+1), weights=probs, k=1)[0]
-                row_vals.append(val)
-            # repair duplicates to ensure row is a permutation
-            seen = set()
-            missing = [v for v in range(1, self.n+1) if v not in row_vals]
-            mi = 0
-            result_row = []
-            for v in row_vals:
-                if v in seen:
-                    result_row.append(missing[mi])
-                    mi += 1
-                else:
-                    result_row.append(v)
-                    seen.add(v)
-            grid[r] = result_row
-        return grid
+   )
+              
 
     def crossover(self, a: List[List[int]], b: List[List[int]]):
         # row-wise crossover (swap rows with probability 0.5)
@@ -175,3 +154,4 @@ class CulturalAlgorithm:
             return False, out_grid, end - start, iterations
         end = time.time()
         return False, None, end - start, iterations
+
